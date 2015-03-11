@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -19,7 +20,7 @@ public class Hotel {
 	private static int MAX_SIZE_NON_GROUP = 20;
 	private static int MAX_SIZE_GROUP = 15;
 
-	public void addCustomer(int customerType, String firstName,String surname, String address, String telephone,LocalDate arrived,LocalDate departing,int numberOfGuests){
+	public int addCustomer(int customerType, String firstName,String surname, String address, String telephone,LocalDate arrived,LocalDate departing,int numberOfGuests){
 
 		switch (customerType)
 		{
@@ -57,28 +58,22 @@ public class Hotel {
 		}
 
 		customerID++;
+		return customerID;
 	}
 
-	public void removeCustomer(int customerID){
-		try{
-			remove(customerID);
+	public void removeCustomer(int id){
+		Customer c = getCustomer(id);
+		if (c==null){
+			System.out.println("Customer does not exist");
 		}
-		catch (Exception e){
-			System.out.println("Customer does not exist!");
+		else {
+			customerList.remove(c);
 		}
+
 	}
 
 
-	public void remove(int id)
-	{
-		for (int i=0;i<customerList.size();i++){
-			if (id == ((Customer) customerList.get(i)).getID()){
-				Customer c = (Customer) customerList.get(i);
-				customerList.remove(c);
-				c = null;
-			}
-		}
-	}
+
 
 	public boolean userInput(Scanner input){
 		int choice = inputIsInteger(input,"1. ADD \n2. REMOVE \n3. GET BILL \n4. Update Rate\n5. Exit");
@@ -88,9 +83,8 @@ public class Hotel {
 			addDetails(input);
 			break;
 		case 2:
-			
 			int id = inputIsInteger(input, "Enter customer id of customer you wish to remove");
-			remove(id);
+			removeCustomer(id);
 			input.nextLine();
 			break;
 		case 3:
@@ -102,7 +96,7 @@ public class Hotel {
 			else {
 				Customer c = getCustomer(id);
 				System.out.println("The bill for " + c.getFirstName() + " " + c.getSurName() + " is £"+bill);
-				
+
 			}
 			break;
 		case 4:
@@ -139,7 +133,7 @@ public class Hotel {
 		}
 
 	}
-	
+
 	private double inputIsDouble(Scanner input,String details){
 		System.out.println(details);
 		double number = 0;
@@ -174,6 +168,7 @@ public class Hotel {
 	{  
 		try  
 		{  
+			@SuppressWarnings("unused")
 			double d = Double.parseDouble(str);  
 		}  
 		catch(NumberFormatException nfe)  
@@ -205,17 +200,17 @@ public class Hotel {
 			return dateFormatted;
 		}
 		else{
-			
+
 			DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
 			dateFormatted = dtf.parseLocalDate(date);
 			return dateFormatted;
 		}
-		
+
 	}
 
 	public void addDetails(Scanner input){
 		int numberOfGuests = 0;
-		int customerType = inputIsInteger(input,"Please Enter Customer Type Number\n1. Coorperate \n2. IndivcustomerIDual\n3. Group");
+		int customerType = inputIsInteger(input,"Please Enter Customer Type Number\n1. Coorperate \n2. Individual\n3. Group");
 		input.nextLine();
 		String firstName = inputIsString(input, "Please Enter First Name");
 		String surname = inputIsString(input, "Please Enter Surame");
@@ -233,7 +228,7 @@ public class Hotel {
 			input.nextLine();
 		}
 		try{
-		addCustomer(customerType, firstName, surname, address, telephone, arrived, departing,numberOfGuests);
+			addCustomer(customerType, firstName, surname, address, telephone, arrived, departing,numberOfGuests);
 		}
 		catch (IllegalStateException e){
 			e.printStackTrace();
@@ -250,36 +245,36 @@ public class Hotel {
 		System.out.println();
 	}
 
+	public void testAdd(){
+		addCustomer(1, "Matt", "Jones", "123", "123", new LocalDate(1995,8,28), new LocalDate(1995,8,31),0);
+		addCustomer(2, "Matt", "Homes", "123", "12345", new LocalDate(2015,3,10), new LocalDate(2015,3,12),0);
+		addCustomer(1, "Zoe", "Delport", "address things", "1234", new LocalDate(2015,3,10), new LocalDate(2015,3,12), 0);
+		addCustomer(3,"Jone","Murphy","Addres","21321", new LocalDate(2014,3,10),new LocalDate(2015,3,10),100);
+	}
+
 
 	public static void main(String args[]){
 		Hotel mattsHotel = new Hotel();
 		Scanner input = new Scanner(System.in);
-
-		mattsHotel.addCustomer(1, "Matt", "Jones", "123", "123", new LocalDate(1995,8,28), new LocalDate(1995,8,31),0);
-
-		mattsHotel.addCustomer(2, "Matt", "Homes", "123", "12345", new LocalDate(2015,3,10), new LocalDate(2015,3,12),0);
-		mattsHotel.addCustomer(1, "Zoe", "Delport", "address things", "1234", new LocalDate(2015,3,10), new LocalDate(2015,3,12), 0);
-
-		mattsHotel.addCustomer(3,"Jone","Murphy","Addres","21321", new LocalDate(2014,3,10),new LocalDate(2015,3,10),100);
-		
-
-
-		
+		mattsHotel.testAdd();
 		boolean doThings = true;
 		while (doThings){
 			mattsHotel.printList();
 			doThings = mattsHotel.userInput(input);
 			//Booking.setCurrentFlatRate(150.0);
 		}
-
-		/*
-		 * TO DO
-		 *Error check id is a number both remove
-		 *Error check telephone number?
-		 *Error check arrived>departed
-		 *
-		 */
-
-
 	}
+	/*
+	 * TO DO
+	 *Error check id is a number both remove
+	 *Error check telephone number?
+	 *Error check arrived>departed
+	 *
+	 *
+	 **/
+
+
+
+
+
 }

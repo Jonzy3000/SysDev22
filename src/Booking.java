@@ -4,10 +4,10 @@ import org.joda.time.Days;
 import org.joda.time.LocalDate;;
 
 public class Booking {
-	protected LocalDate dateArrived;
-	protected LocalDate dateDeparting;
-	protected int daysStayed;
-	protected static double currentFlatRate = (float) 100.00;
+	private LocalDate dateArrived;
+	private LocalDate dateDeparting;
+	private int daysStayed;
+	private static double currentFlatRate = (float) 100.00;
 	
 	public Booking(LocalDate dateArrived,LocalDate dateDeparting) {
 		this.dateArrived = dateArrived;
@@ -33,12 +33,13 @@ public class Booking {
 	 */
 	protected Boolean getIsWeekend(){
 		int dayNumber = dateArrived.getDayOfWeek();
-		for (int i=0;i<daysStayed;i++){
+		for (int i=0;i<=daysStayed;i++){
 			if (dayNumber==6 || dayNumber==7){
 				return true;
 			}
 			dayNumber++;
 		}
+		
 		return false;
 	}
 	

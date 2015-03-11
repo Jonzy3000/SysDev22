@@ -1,13 +1,13 @@
 
 public abstract class Customer {
 	
-	protected String firstName;
-	protected String surname;
-	protected String address;
-	protected String telephone;
-	protected int customerID;
-	protected double bill;
-	protected Booking booking;
+	private String firstName;
+	private String surname;
+	private String address;
+	private String telephone;
+	private int customerID;
+	double bill; //protected as used in generateBill();
+	Booking booking;
 	
 	public Customer(String firstName,String surname, String address, String telephone, int customerID,Booking booking){
 		this.booking=booking;
@@ -18,7 +18,7 @@ public abstract class Customer {
 		this.customerID = customerID;
 	}
 	
-	protected abstract double generateBill();
+	abstract double generateBill();
 
 	String getFirstName() {
 		// TODO Auto-generated method stub
