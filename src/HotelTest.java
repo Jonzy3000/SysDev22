@@ -9,12 +9,18 @@ public class HotelTest {
 	@Test
 	public void testAddCustomer() {
 		Hotel h = new Hotel();
+		int nCustomers = h.customerList.size();
+		int id = Hotel.customerID;
+		h.addCustomer(1, "Matt", "Jones", "123", "123", new LocalDate(2014,12,25), new LocalDate(2015,1,11), 0);
 		//Customer been added and the customerID has been increased
-		assertNotEquals(0, h.addCustomer(1, "Matt", "Jones", "123", "123", new LocalDate(2014,12,25), new LocalDate(2015,1,11), 0));
+		assertEquals(id+1, Hotel.customerID);
+		assertEquals(nCustomers + 1,h.customerList.size());
 	}
+	
 	@Test
 	public void testTestAdd() {
 		Hotel h = new Hotel();
+		//adds 4 customers to the hotel
 		h.testAdd();
 		assertEquals(4,h.customerList.size());
 	}
@@ -24,7 +30,7 @@ public class HotelTest {
 		
 		Hotel h = new Hotel();
 		//As static doesn't reset each time a new hotel is created
-		h.customerID = 0;
+		Hotel.customerID = 0;
 		h.testAdd();
 		int nCustomers = h.customerList.size();
 		h.removeCustomer(1);

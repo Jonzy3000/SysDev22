@@ -20,7 +20,7 @@ public class Hotel {
 	private static int MAX_SIZE_NON_GROUP = 20;
 	private static int MAX_SIZE_GROUP = 15;
 
-	public int addCustomer(int customerType, String firstName,String surname, String address, String telephone,LocalDate arrived,LocalDate departing,int numberOfGuests){
+	public void addCustomer(int customerType, String firstName,String surname, String address, String telephone,LocalDate arrived,LocalDate departing,int numberOfGuests){
 
 		switch (customerType)
 		{
@@ -58,7 +58,7 @@ public class Hotel {
 		}
 
 		customerID++;
-		return customerID;
+
 	}
 
 	public void removeCustomer(int id){
@@ -100,8 +100,8 @@ public class Hotel {
 			}
 			break;
 		case 4:
-			Double newRate = inputIsDouble(input,"Please enter new rate");
-			Booking.setCurrentFlatRate(newRate);
+			double newRate = inputIsDouble(input,"Please enter new rate");
+			Booking.setCurrentFlatRate((double) newRate);
 			break;
 		case 5:
 			System.out.println("FALSE");
@@ -139,15 +139,20 @@ public class Hotel {
 		double number = 0;
 		try {
 			number = input.nextDouble();
+			if (number>0){
+				return number;
+			}
+			throw new Exception("Invalid");
 		}
 		catch (Exception e){
 			input.nextLine();
 			System.out.println("OOPS, that doesn't seem to be the correct input");
-			inputIsInteger(input,details);
-
+			number = inputIsDouble(input,details);
 		}
 		return number;
+		
 	}
+	
 	private int inputIsInteger(Scanner input,String details){
 		System.out.println(details);
 		int number = 0;
