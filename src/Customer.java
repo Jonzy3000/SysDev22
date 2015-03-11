@@ -19,18 +19,37 @@ public abstract class Customer {
 	}
 	
 	protected abstract double generateBill();
-	
-	abstract String getFirstName();
-	
-	abstract String getSurName();
-	
-	abstract String getAddress();
-	
-	abstract String getTelephone();
-	
-	abstract int getID();
-	
-	abstract int getDaysStayed();
+
+	String getFirstName() {
+		// TODO Auto-generated method stub
+		
+		return this.firstName;
+	}
+ 
+	String getSurName() {
+		// TODO Auto-generated method stub
+		return this.surname;
+	}
+ 
+	String getAddress() {
+		// TODO Auto-generated method stub
+		return this.address;
+	}
+ 
+	int getID() {
+		// TODO Auto-generated method stub
+		return customerID;
+	}
+ 
+	String getTelephone() {
+		// TODO Auto-generated method stub
+		return telephone;
+	}
+ 
+	int getDaysStayed() {
+		// TODO Auto-generated method stub
+		return booking.getDaysStayed();
+	}
 
 	
 	

@@ -262,16 +262,6 @@ public class Hotel {
 
 		mattsHotel.addCustomer(3,"Jone","Murphy","Addres","21321", new LocalDate(2014,3,10),new LocalDate(2015,3,10),100);
 		
-		for (int i=0;i<15;i++){
-			try{
-			mattsHotel.addCustomer(3,"Jone","Murphy","Addres","21321", new LocalDate(2014,3,10),new LocalDate(2015,3,10),100);
-			mattsHotel.addCustomer(1, "Zoe", "Delport", "address things", "1234", new LocalDate(2015,3,10), new LocalDate(2015,3,12), 0);
-			}
-			catch (IllegalStateException e){
-				System.out.println("Too many type of customers");
-			}
-		}
-
 
 
 		

@@ -12,37 +12,6 @@ public class IndividualCustomer extends Customer {
 		bill = booking.getDaysStayed() * booking.getCurrentFlatRate();
 		return bill;
 	}
-	@Override
-	String getFirstName() {
-		// TODO Auto-generated method stub
-		
-		return this.firstName;
-	}
-	@Override
-	String getSurName() {
-		// TODO Auto-generated method stub
-		return this.surname;
-	}
-	@Override
-	String getAddress() {
-		// TODO Auto-generated method stub
-		return this.address;
-	}
-	@Override
-	int getID() {
-		// TODO Auto-generated method stub
-		return customerID;
-	}
-	@Override
-	String getTelephone() {
-		// TODO Auto-generated method stub
-		return telephone;
-	}
-	@Override
-	int getDaysStayed() {
-		// TODO Auto-generated method stub
-		return booking.getDaysStayed();
-	}
-
+	
 
 }
