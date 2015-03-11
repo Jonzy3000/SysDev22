@@ -2,15 +2,16 @@
 public class GroupCustomer extends Customer  {
 	private int numberOfGuests;
 	
-	public GroupCustomer(String firstName,String surname, String address, int telephone, int customerID,Booking booking) {
-		this.booking = booking;
+	public GroupCustomer(String firstName,String surname, String address, String telephone, int customerID,Booking booking,int numberOfGuests) {
+		super(firstName,surname, address, telephone, customerID,booking);
+		this.numberOfGuests = numberOfGuests-1;
 	}
 	@Override
 	protected double generateBill() {
 		double rate = booking.getCurrentFlatRate();
 		bill = rate * booking.getDaysStayed();
 		bill =  (bill + (bill*0.1*numberOfGuests));
-		return this.bill;
+		return bill;
 	}
 	@Override
 	String getFirstName() {
@@ -33,9 +34,14 @@ public class GroupCustomer extends Customer  {
 		return customerID;
 	}
 	@Override
-	int getBill() {
+	String getTelephone() {
 		// TODO Auto-generated method stub
-		return 0;
+		return telephone;
+	}
+	@Override
+	int getDaysStayed() {
+		// TODO Auto-generated method stub
+		return booking.getDaysStayed();
 	}
 
 			

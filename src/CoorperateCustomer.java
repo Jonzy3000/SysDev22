@@ -4,8 +4,8 @@ public class CoorperateCustomer extends Customer {
 	
 	
 	
-	public  CoorperateCustomer(String firstName,String surname, String address, int telephone, int customerID,Booking booking) {
-		this.booking = booking;
+	public  CoorperateCustomer(String firstName,String surname, String address, String telephone, int customerID,Booking booking) {
+		super(firstName,surname, address, telephone, customerID,booking);
 	}
 		
 	
@@ -18,44 +18,48 @@ public class CoorperateCustomer extends Customer {
 			
 		}
 		else{
-			bill = bill *0.2;
+			bill = bill *0.8;
 		}
-		return this.bill;
+		return bill;
 	}
 
 
 	@Override
 	String getFirstName() {
 		// TODO Auto-generated method stub
-		return null;
+		return firstName;
 	}
-
-
 	@Override
 	String getSurName() {
 		// TODO Auto-generated method stub
-		return null;
+		return surname;
 	}
-
-
 	@Override
 	String getAddress() {
 		// TODO Auto-generated method stub
-		return null;
+		return address;
 	}
-
-
 	@Override
 	int getID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return customerID;
 	}
 
 
 	@Override
-	int getBill() {
+	String getTelephone() {
 		// TODO Auto-generated method stub
-		return 0;
+		return telephone;
 	}
+
+
+	@Override
+	int getDaysStayed() {
+		// TODO Auto-generated method stub
+		return booking.getDaysStayed();
+	}
+
+
+
 
 }

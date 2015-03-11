@@ -4,10 +4,19 @@ public abstract class Customer {
 	protected String firstName;
 	protected String surname;
 	protected String address;
-	protected int telephone;
+	protected String telephone;
 	protected int customerID;
 	protected double bill;
 	protected Booking booking;
+	
+	public Customer(String firstName,String surname, String address, String telephone, int customerID,Booking booking){
+		this.booking=booking;
+		this.firstName = firstName;
+		this.surname = surname;
+		this.address = address;
+		this.telephone = telephone;
+		this.customerID = customerID;
+	}
 	
 	protected abstract double generateBill();
 	
@@ -17,10 +26,12 @@ public abstract class Customer {
 	
 	abstract String getAddress();
 	
+	abstract String getTelephone();
+	
 	abstract int getID();
 	
-	abstract int getBill();
-	
+	abstract int getDaysStayed();
+
 	
 	
 		

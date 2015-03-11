@@ -1,4 +1,4 @@
-import java.util.Date;
+
 
 import org.joda.time.Days;
 import org.joda.time.LocalDate;;
@@ -12,8 +12,8 @@ public class Booking {
 	public Booking(LocalDate dateArrived,LocalDate dateDeparting) {
 		this.dateArrived = dateArrived;
 		this.dateDeparting = dateDeparting;
+		this.daysStayed = Days.daysBetween(dateArrived, dateDeparting).getDays();
 		
-		daysStayed = Days.daysBetween(dateArrived, dateDeparting).getDays();
 	}
 	protected int getDaysStayed(){
 		return daysStayed;
@@ -32,7 +32,6 @@ public class Booking {
 	 * @return
 	 */
 	protected Boolean getIsWeekend(){
-		@SuppressWarnings("deprecation")
 		int dayNumber = dateArrived.getDayOfWeek();
 		for (int i=0;i<daysStayed;i++){
 			if (dayNumber==6 || dayNumber==7){
@@ -40,8 +39,6 @@ public class Booking {
 			}
 			dayNumber++;
 		}
-			
-		
 		return false;
 	}
 	
@@ -50,6 +47,10 @@ public class Booking {
 	protected double getCurrentFlatRate()
 	{
 		return currentFlatRate;
+	}
+	
+	protected static void setCurrentFlatRate(double flatRate){
+		Booking.currentFlatRate = flatRate;
 	}
 
 }
