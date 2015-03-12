@@ -9,7 +9,7 @@ public class IndividualCustomer extends Customer {
 	}
 	@Override
 	 /**
-	  * The most simplest generateBill method. Get the days and multiply the the current rate.
+	  * The most simplest generateBill method. 
 	  */
 	protected double generateBill() {
 		return generateFlatBill();

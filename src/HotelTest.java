@@ -18,11 +18,11 @@ public class HotelTest {
 	}
 	
 	@Test
-	public void testTestAdd() {
+	public void testInitialDatabase() {
 		Hotel h = new Hotel();
 		//adds 4 customers to the hotel
-		h.testAdd();
-		assertEquals(4,h.customerList.size());
+		h.initialDatabase();
+		assertEquals(5,h.customerList.size());
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class HotelTest {
 		Hotel h = new Hotel();
 		//As static doesn't reset each time a new hotel is created
 		Hotel.customerID = 0;
-		h.testAdd();
+		h.initialDatabase();
 		int nCustomers = h.customerList.size();
 		h.removeCustomer(1);
 		assertEquals(nCustomers - 1,h.customerList.size());

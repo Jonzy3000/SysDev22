@@ -1,8 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import org.hamcrest.CoreMatchers;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -137,7 +135,7 @@ public class Hotel {
 			input.nextLine();
 			break;
 		case 3: //Get Bill
-			id = inputIsInteger(input, "Enter customer id of customer you wish to remove");
+			id = inputIsInteger(input, "Enter customer id of customer you wish to retrieve the bill for");
 			double bill = getBill(id);
 			if (bill == - 1){
 				System.out.println("Customer does not exist");
@@ -284,8 +282,11 @@ public class Hotel {
 	 * @return
 	 */
 	private LocalDate inputIsDate(Scanner input, String details){
+	
 		LocalDate dateFormatted;
-		String date = inputIsString(input,details);
+		System.out.println(details);
+		String date = input.nextLine();
+		System.out.println(date);
 		if (!date.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")){
 			System.out.println("OOPS, that doesn't seem to be the correct date input.");
 			dateFormatted = inputIsDate(input,details);
@@ -355,11 +356,12 @@ public class Hotel {
 	/**
 	 * Adds a few customers into the database
 	 */
-	public void testAdd(){
-		addCustomer(1, "Matt", "Jones", "123", "123", new LocalDate(1995,8,28), new LocalDate(1995,8,31),0);
-		addCustomer(2, "Matt", "Homes", "123", "12345", new LocalDate(2015,3,10), new LocalDate(2015,3,12),0);
-		addCustomer(1, "Zoe", "Delport", "address things", "1234", new LocalDate(2015,3,10), new LocalDate(2015,3,12), 0);
-		addCustomer(3,"Jone","Murphy","Addres","21321", new LocalDate(2014,3,10),new LocalDate(2015,3,10),100);
+	public void initialDatabase(){
+		addCustomer(1, "Matt", "Jones", "213 Newbridge Road", "07863976148", new LocalDate(1995,8,28), new LocalDate(1995,8,31),0);
+		addCustomer(2, "Matt", "Homes", "67 Birk Tree Street", "075139583337", new LocalDate(2015,3,10), new LocalDate(2015,3,12),0);
+		addCustomer(1, "Zoe", "Delport", "55 Park Avenue", "07812345678", new LocalDate(2015,3,10), new LocalDate(2015,3,12), 0);
+		addCustomer(3,"Jone","Murphy","1 Bristol Close","02875693057", new LocalDate(2014,3,10),new LocalDate(2015,3,10),10);
+		addCustomer(3,"James","Brown","123 Bath Road","01526988630",new LocalDate(2014,3,10),new LocalDate(2014,3,15),8);
 	}
 
 
@@ -371,7 +373,7 @@ public class Hotel {
 	public static void main(String args[]){
 		Hotel mattsHotel = new Hotel();
 		Scanner input = new Scanner(System.in);
-		mattsHotel.testAdd();
+		mattsHotel.initialDatabase();
 		boolean doThings = true;
 		while (doThings){
 			//Prints out whole database each time, this will not be ideal for large databases
