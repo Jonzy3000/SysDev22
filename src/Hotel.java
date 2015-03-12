@@ -99,7 +99,7 @@ public class Hotel {
 	}
 		
 	/**
-	 * Decreases number of given type of customer
+	 * Decreases number of given type of customer when removed.
 	 * @param c
 	 */
 	public void decreaseNumberOfCustomerType(Customer c){
@@ -286,7 +286,6 @@ public class Hotel {
 		LocalDate dateFormatted;
 		System.out.println(details);
 		String date = input.nextLine();
-		System.out.println(date);
 		if (!date.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")){
 			System.out.println("OOPS, that doesn't seem to be the correct date input.");
 			dateFormatted = inputIsDate(input,details);
