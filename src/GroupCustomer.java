@@ -14,8 +14,7 @@ public class GroupCustomer extends Customer  {
 	protected double generateBill() {
 		//For each extra guests, if there are 4 guests then thats 3 extra ones.
 		int numberOfExtraGuests = numberOfGuests-1;
-		double rate = booking.getCurrentFlatRate();
-		bill = rate * booking.getDaysStayed();
+		bill = generateFlatBill();
 		bill =  (bill + (bill*0.1*numberOfExtraGuests));
 		return bill;
 	}
@@ -23,7 +22,5 @@ public class GroupCustomer extends Customer  {
 	protected int getNumberOfGuests(){
 		return this.numberOfGuests;
 	}
-
-
 			
 }

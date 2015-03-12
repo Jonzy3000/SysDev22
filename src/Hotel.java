@@ -128,15 +128,15 @@ public class Hotel {
 		int choice = inputIsInteger(input,"1. ADD \n2. REMOVE \n3. GET BILL \n4. Update Rate\n5. Exit");
 		input.nextLine();
 		switch (choice){
-		case 1:
+		case 1: //Add
 			addDetails(input);
 			break;
-		case 2:
+		case 2: // Remove
 			int id = inputIsInteger(input, "Enter customer id of customer you wish to remove");
 			removeCustomer(id);
 			input.nextLine();
 			break;
-		case 3:
+		case 3: //Get Bill
 			id = inputIsInteger(input, "Enter customer id of customer you wish to remove");
 			double bill = getBill(id);
 			if (bill == - 1){
@@ -144,16 +144,17 @@ public class Hotel {
 			}
 			else {
 				Customer c = getCustomer(id);
-				System.out.println("The bill for " + c.getFirstName() + " " + c.getSurName() + " is £"+bill);
+				System.out.println("The bill for " + c.getFirstName() + " " + c.getSurname() + " is £"+bill);
 
 			}
 			break;
-		case 4:
+		case 4: //Set flat rate
 			double newRate = inputIsDouble(input,"Please enter new rate");
 			Booking.setCurrentFlatRate((double) newRate);
 			break;
-		case 5:
+		case 5: //Exit program
 			System.out.println("FALSE");
+			//while loop in main will exit when false.
 			return false;
 		}
 		return true;
@@ -256,6 +257,7 @@ public class Hotel {
 
 	/**
 	 * Checks to see if input is a string
+	 * Checks to see if number has numbers, if so reasks for input
 	 * @param input
 	 * @param details
 	 * @return
@@ -310,9 +312,16 @@ public class Hotel {
 		String surname = inputIsString(input, "Please Enter Surame");
 		System.out.println("Please Enter Address");
 		String address = input.nextLine();
-		System.out.println("Please Enter Telephone");
-		//Should check for telephone
+		System.out.println("Please Enter Telephone Number");
 		String telephone = input.nextLine();
+		
+		//If telephone is not a number re ask for input!
+		while(!isNumeric(telephone)){
+			System.out.println("OOPS, that doesn't seem to be in the correct format");
+			System.out.println("Please Enter Telephone Number");
+			telephone = input.nextLine();
+		}
+		
 		LocalDate arrived = inputIsDate(input, "Please Enter Date Arrived dd/mm/yyyy");
 		LocalDate departing = inputIsDate(input, "Please Enter Date Departing dd/MM/yyyy");
 
@@ -337,7 +346,7 @@ public class Hotel {
 	public void printList(){
 		System.out.println("\nTHE CURRENT DATABASE IS : ");
 		for (Customer customer: customerList){
-			System.out.println(customer.getID()+" "+customer.getFirstName()+" "+customer.getSurName()+" "+customer.getAddress()+" "+customer.getTelephone()+" "+customer.getDaysStayed()+" "+customer.generateBill());
+			System.out.println(customer.getID()+" "+customer.getFirstName()+" "+customer.getSurname()+" "+customer.getAddress()+" "+customer.getTelephone()+" "+customer.getDaysStayed()+" "+customer.generateBill());
 
 		}
 		System.out.println();

@@ -16,20 +16,14 @@ public class CorporateCustomer extends Customer {
 	 */
 	protected double generateBill() {
 		isWeekend = booking.getIsWeekend();
-		bill = (booking.getCurrentFlatRate() * booking.getDaysStayed());
+		bill = generateFlatBill();
 		if (isWeekend){
 			bill = bill * 0.5;
-			
 		}
 		else{
 			bill = bill *0.8;
 		}
 		return bill;
 	}
-
-
-
-
-
 
 }

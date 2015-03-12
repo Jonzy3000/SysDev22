@@ -3,6 +3,13 @@
 import org.joda.time.Days;
 import org.joda.time.LocalDate;;
 
+/**
+ * Each customer has their own individual booking
+ * This deals with the dates the customer stays between
+ * Also here is where the rate is stored, this can be changed by the user of the hotel class.
+ * @author Matt
+ *
+ */
 public class Booking {
 	private LocalDate dateArrived;
 	private LocalDate dateDeparting;
@@ -22,11 +29,8 @@ public class Booking {
 	
 	/**
 	 * 
-	 * mon 1
-	 * tues 2
-	 * wed 3
-	 * thurs 4
-	 * fri 5
+	 *Checks to see if the dates cover a weekend.
+	 * Only calculates for daysStayed, or until a weekend is discovered.
 	 * sat 6
 	 * sun 7
 	 * @return
@@ -44,7 +48,10 @@ public class Booking {
 	}
 	
 	
-	
+	/**
+	 * Used to calculate the bill from customer subclass
+	 * @return
+	 */
 	protected double getCurrentFlatRate()
 	{
 		return currentFlatRate;
