@@ -51,7 +51,7 @@ public class HotelTest {
 		
 	@Test
 	public void testCoorpBillNonWeeked(){
-		CoorperateCustomer cc = new CoorperateCustomer("Matt", "Jones", "address", "telephone", 14, new Booking(new LocalDate(2015,3,4),new LocalDate(2015,3,6)));
+		CorporateCustomer cc = new CorporateCustomer("Matt", "Jones", "address", "telephone", 14, new Booking(new LocalDate(2015,3,4),new LocalDate(2015,3,6)));
 		assertEquals(160.00,cc.generateBill(),00.1); //20% of 200 is 160
 			
 	}
@@ -59,7 +59,7 @@ public class HotelTest {
 	
 	@Test
 	public void testCoorpBillWeekend(){
-		CoorperateCustomer cc = new CoorperateCustomer("Matt", "Jones", "address", "telephone", 14, new Booking(new LocalDate(2015,3,5),new LocalDate(2015,3,7)));
+		CorporateCustomer cc = new CorporateCustomer("Matt", "Jones", "address", "telephone", 14, new Booking(new LocalDate(2015,3,5),new LocalDate(2015,3,7)));
 		assertEquals(100,cc.generateBill(),0.01);//50% of 200 is 100 
 	}
 	@Test

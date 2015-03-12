@@ -8,6 +8,9 @@ public class IndividualCustomer extends Customer {
 		
 	}
 	@Override
+	 /**
+	  * The most simplest generateBill method. Get the days and multiply the the current rate.
+	  */
 	protected double generateBill() {
 		bill = booking.getDaysStayed() * booking.getCurrentFlatRate();
 		return bill;
