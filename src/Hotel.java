@@ -123,6 +123,7 @@ public class Hotel {
 	 * @return
 	 */
 	public boolean userInput(Scanner input){
+		//Less user error to use numbers for choices
 		int choice = inputIsInteger(input,"1. ADD \n2. REMOVE \n3. GET BILL \n4. Update Rate\n5. Exit");
 		input.nextLine();
 		switch (choice){
@@ -137,12 +138,14 @@ public class Hotel {
 		case 3: //Get Bill
 			id = inputIsInteger(input, "Enter customer id of customer you wish to retrieve the bill for");
 			double bill = getBill(id);
+			//Customer doesn't exist.
 			if (bill == - 1){
+				
 				System.out.println("Customer does not exist");
 			}
 			else {
 				Customer c = getCustomer(id);
-				System.out.println("The bill for " + c.getFirstName() + " " + c.getSurname() + " is £"+bill);
+				System.out.println("The bill for " + c.getFirstName() + " " + c.getSurname() + " is £"+ bill);
 
 			}
 			break;
@@ -168,6 +171,7 @@ public class Hotel {
 	 */
 	public Customer getCustomer(int id){
 		for (int i=0;i<customerList.size();i++){
+			//Compares id
 			if (id == customerList.get(i).getID()){
 				Customer c =  customerList.get(i);
 				return c;
@@ -187,6 +191,7 @@ public class Hotel {
 			return c.generateBill();
 		}
 		else{
+			//If null return -1, this is checked when the method gets called
 			return -1;
 		}
 
@@ -306,6 +311,7 @@ public class Hotel {
 	 */
 	public void addDetails(Scanner input){
 		int numberOfGuests = 0;
+		//Less user error to use numbers for choices
 		int customerType = inputIsInteger(input,"Please Enter Customer Type Number\n1. Coorperate \n2. Individual\n3. Group");
 		input.nextLine(); 
 		String firstName = inputIsString(input, "Please Enter First Name");
@@ -341,7 +347,7 @@ public class Hotel {
 	}
 
 	/**
-	 * Prints all the information of the databse
+	 * Prints all the information of the database
 	 */
 	public void printList(){
 		System.out.println("\nTHE CURRENT DATABASE IS : ");
