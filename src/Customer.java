@@ -87,9 +87,6 @@ public abstract class Customer {
 		this.address = address;
 	}
 	
-	void setID(int id){
-		this.customerID = id;
-	}
 	void setTelephone(String telephone){
 		this.telephone = telephone;
 	}
