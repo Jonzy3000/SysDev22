@@ -36,7 +36,7 @@ public class Hotel {
 	 * @param departing
 	 * @param numberOfGuests
 	 */
-	public void addCustomer(int customerType, String firstName,String surname, String address, String telephone,LocalDate arrived,LocalDate departing,int numberOfGuests){
+	protected void addCustomer(int customerType, String firstName,String surname, String address, String telephone,LocalDate arrived,LocalDate departing,int numberOfGuests){
 
 		switch (customerType)
 		{
@@ -85,7 +85,7 @@ public class Hotel {
 	 * Doesn't try to remove if the customer does not exist
 	 * @param id
 	 */
-	public void removeCustomer(int id){
+	protected void removeCustomer(int id){
 		Customer c = getCustomer(id);
 		if (c==null){
 			System.out.println("Customer does not exist");
@@ -102,7 +102,7 @@ public class Hotel {
 	 * Decreases number of given type of customer when removed.
 	 * @param c
 	 */
-	public void decreaseNumberOfCustomerType(Customer c){
+	private void decreaseNumberOfCustomerType(Customer c){
 		if (c instanceof IndividualCustomer){
 			individualCustomerN--;
 		}
@@ -122,7 +122,7 @@ public class Hotel {
 	 * @param input
 	 * @return
 	 */
-	public boolean userInput(Scanner input){
+	protected boolean userInput(Scanner input){
 		//Less user error to use numbers for choices
 		int choice = inputIsInteger(input,"1. ADD \n2. REMOVE \n3. GET BILL \n4. Update Rate\n5. Exit");
 		input.nextLine();
@@ -154,7 +154,6 @@ public class Hotel {
 			Booking.setCurrentFlatRate((double) newRate);
 			break;
 		case 5: //Exit program
-			System.out.println("FALSE");
 			//while loop in main will exit when false.
 			return false;
 		}
@@ -169,7 +168,7 @@ public class Hotel {
 	 * @param id
 	 * @return
 	 */
-	public Customer getCustomer(int id){
+	private Customer getCustomer(int id){
 		for (int i=0;i<customerList.size();i++){
 			//Compares id
 			if (id == customerList.get(i).getID()){
@@ -185,7 +184,7 @@ public class Hotel {
 	 * @param id
 	 * @return
 	 */
-	public double getBill(int id){
+	private double getBill(int id){
 		Customer c = getCustomer(id);
 		if (c !=null){
 			return c.generateBill();
@@ -234,14 +233,17 @@ public class Hotel {
 		int number = 0;
 		try {
 			number = input.nextInt();
+			
 		}
 		catch (Exception e){
 			input.nextLine();
 			System.out.println("OOPS, that doesn't seem to be the correct input");
-			inputIsInteger(input,details);
+			number = inputIsInteger(input,details);
+			
 
 		}
 		return number;
+		
 	}
 
 	//stackoverflow.com/questions/14735138/java-make-sure-that-a-user-doesnt-enter-numbers-in-a-string
@@ -250,7 +252,7 @@ public class Hotel {
 	 * @param str
 	 * @return
 	 */
-	public static boolean isNumeric(String str)
+	private static boolean isNumeric(String str)
 	{
 		if (!str.replaceAll("[0-9]", "").equals(str)) {
 		    return true;
@@ -309,7 +311,7 @@ public class Hotel {
 	 * Uses lots of checks to make sure input is correct
 	 * @param input
 	 */
-	public void addDetails(Scanner input){
+	protected void addDetails(Scanner input){
 		int numberOfGuests = 0;
 		//Less user error to use numbers for choices
 		int customerType = inputIsInteger(input,"Please Enter Customer Type Number\n1. Coorperate \n2. Individual\n3. Group");
@@ -349,7 +351,7 @@ public class Hotel {
 	/**
 	 * Prints all the information of the database
 	 */
-	public void printList(){
+	protected void printDatabase(){
 		System.out.println("\nTHE CURRENT DATABASE IS : ");
 		for (Customer customer: customerList){
 			System.out.println(customer.getID()+" "+customer.getFirstName()+" "+customer.getSurname()+" "+customer.getAddress()+" "+customer.getTelephone()+" "+customer.getDaysStayed()+" "+customer.generateBill());
@@ -361,7 +363,7 @@ public class Hotel {
 	/**
 	 * Adds a few customers into the database
 	 */
-	public void initialDatabase(){
+	protected void initialDatabase(){
 		addCustomer(1, "Matt", "Jones", "213 Newbridge Road", "07863976148", new LocalDate(1995,8,28), new LocalDate(1995,8,31),0);
 		addCustomer(2, "Matt", "Homes", "67 Birk Tree Street", "075139583337", new LocalDate(2015,3,10), new LocalDate(2015,3,12),0);
 		addCustomer(1, "Zoe", "Delport", "55 Park Avenue", "07812345678", new LocalDate(2015,3,10), new LocalDate(2015,3,12), 0);
@@ -382,7 +384,7 @@ public class Hotel {
 		boolean doThings = true;
 		while (doThings){
 			//Prints out whole database each time, this will not be ideal for large databases
-			mattsHotel.printList();
+			mattsHotel.printDatabase();
 			doThings = mattsHotel.userInput(input);
 		}
 		System.out.println("Good Bye");
